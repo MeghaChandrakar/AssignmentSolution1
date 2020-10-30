@@ -16,6 +16,7 @@ public class Register {
 	public static void main(String []args) 
 	{
 
+		// This will automatically download the chrome driver and set the path
 		WebDriverManager.chromedriver().setup();
 		
 		WebDriver driver = new ChromeDriver();
