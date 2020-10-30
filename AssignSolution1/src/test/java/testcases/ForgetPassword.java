@@ -31,8 +31,8 @@ public class ForgetPassword {
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 		
 		System.out.println("Message is: " +driver.findElement(By.xpath("//div[@role='alert']")));
-		System.out.println("Message is: " +driver.getClass());	
-		//driver.close();
+		
+		driver.close();
 				
 	}
 
