@@ -1,14 +1,20 @@
 package testcases;
 
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class ForgetPassword {
+public class ForgetPassword
+{
 
+	@Test
 	public static void main(String[] args)
 	{
 		WebDriverManager.chromedriver().setup();
@@ -18,6 +24,8 @@ public class ForgetPassword {
 		driver.get("http://new.koode.in/#/login/0");
 		
 		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//Enter the Email id
 		driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("mahi@gmail.com");
@@ -30,7 +38,9 @@ public class ForgetPassword {
 		
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 		
-		System.out.println("Message is: " +driver.findElement(By.xpath("//div[@role='alert']")));
+		driver.findElement(By.xpath(" //div[@class='alert alert-success']")).getText();
+		
+		Assert.assertTrue(driver.getCurrentUrl().contains("reset"));
 		
 		driver.close();
 				

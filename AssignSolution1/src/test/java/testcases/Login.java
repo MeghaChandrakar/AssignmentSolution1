@@ -5,12 +5,16 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Login {
+public class Login 
+{
 
-	public static void main(String[] args) 
+	@Test
+	public void login() throws InterruptedException  
 	{
 		WebDriverManager.chromedriver().setup();
 		
@@ -33,7 +37,10 @@ public class Login {
 			
 		//Click on Sing in button
 		driver.findElement(By.xpath("//div[@class='uk-margin']//button[@type='submit'][contains(normalize-space(),'Sign In')]")).click();
-			
+	    Thread.sleep(2000);
+		
+		Assert.assertTrue(driver.getCurrentUrl().contains("home"));
+		
 		//Close the browser
 		driver.close();
 				

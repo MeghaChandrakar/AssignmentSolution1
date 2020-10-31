@@ -6,16 +6,16 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Register {
-	
-
-	public static void main(String []args) 
+public class Register 
+{
+	@Test
+	public void register() 
 	{
-
 		// This will automatically download the chrome driver and set the path
 		WebDriverManager.chromedriver().setup();
 		
@@ -38,6 +38,8 @@ public class Register {
 		driver.findElement(By.xpath("//*[text()='Register']//following::input[@placeholder='Confirm Password']")).sendKeys("Abcd123");
 		
 		driver.findElement(By.xpath("//*[contains(text(),'Create')]")).click();
+		
+		Assert.assertTrue(driver.getCurrentUrl().contains("home"));
 		
 		driver.close();
 	}
